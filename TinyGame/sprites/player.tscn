@@ -1,0 +1,139 @@
+[gd_scene load_steps=22 format=3 uid="uid://iok60rnsyqai"]
+
+[ext_resource type="Script" path="res://sprites/player.gd" id="1_4ye3m"]
+[ext_resource type="Shader" path="res://shaders/player.gdshader" id="1_ee1oj"]
+[ext_resource type="Texture2D" uid="uid://cm8a2jt7adbll" path="res://art/blue_witch/B_witch_idle_clr.png" id="2_3vvn3"]
+[ext_resource type="Texture2D" uid="uid://c27v8ellj3ilu" path="res://art/blue_witch/B_witch_run_clr.png" id="3_kqk14"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7spin"]
+shader = ExtResource("1_ee1oj")
+shader_parameter/outlineWidth = 1.0
+shader_parameter/outlineColor = Color(14.793, 0.592, 8.284, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pqcd3"]
+atlas = ExtResource("2_3vvn3")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t07fw"]
+atlas = ExtResource("2_3vvn3")
+region = Rect2(0, 48, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_srlns"]
+atlas = ExtResource("2_3vvn3")
+region = Rect2(0, 96, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hcmc1"]
+atlas = ExtResource("2_3vvn3")
+region = Rect2(0, 144, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_htutl"]
+atlas = ExtResource("2_3vvn3")
+region = Rect2(0, 192, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qxmd4"]
+atlas = ExtResource("2_3vvn3")
+region = Rect2(0, 240, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48uxg"]
+atlas = ExtResource("3_kqk14")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ikxi1"]
+atlas = ExtResource("3_kqk14")
+region = Rect2(0, 48, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pt8gb"]
+atlas = ExtResource("3_kqk14")
+region = Rect2(0, 96, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6108r"]
+atlas = ExtResource("3_kqk14")
+region = Rect2(0, 144, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4huxw"]
+atlas = ExtResource("3_kqk14")
+region = Rect2(0, 192, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3yps"]
+atlas = ExtResource("3_kqk14")
+region = Rect2(0, 240, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5tu3k"]
+atlas = ExtResource("3_kqk14")
+region = Rect2(0, 288, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ec54p"]
+atlas = ExtResource("3_kqk14")
+region = Rect2(0, 336, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rwcw6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pqcd3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t07fw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_srlns")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hcmc1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_htutl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qxmd4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_48uxg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ikxi1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pt8gb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6108r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4huxw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3yps")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5tu3k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ec54p")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_51d78"]
+radius = 9.0
+height = 34.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_4ye3m")
+
+[node name="Animation" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_7spin")
+sprite_frames = SubResource("SpriteFrames_rwcw6")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_51d78")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)

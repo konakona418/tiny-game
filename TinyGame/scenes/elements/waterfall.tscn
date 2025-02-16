@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://dwumklpur2epd"]
+
+[ext_resource type="Shader" path="res://shaders/waterfall.gdshader" id="1_4do54"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lddmk"]
+shader = ExtResource("1_4do54")
+shader_parameter/amplitude = Vector2(0.1, -0.5)
+shader_parameter/noiseScale = 1.0
+shader_parameter/shakeSpeed = Vector2(0.1, -1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_je78c"]
+noise_type = 2
+frequency = 0.0118
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_f2e8g"]
+seamless = true
+seamless_blend_skirt = 0.312
+as_normal_map = true
+noise = SubResource("FastNoiseLite_je78c")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n8ugg"]
+shader = ExtResource("1_4do54")
+shader_parameter/amplitude = Vector2(0.05, -0.05)
+shader_parameter/noiseScale = 1.0
+shader_parameter/shakeSpeed = Vector2(0, -0.1)
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_f2e8g")
+
+[node name="WaterFall" type="Node2D"]
+
+[node name="Water" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_lddmk")
+
+[node name="Polygon2D" type="ColorRect" parent="Water"]
+material = SubResource("ShaderMaterial_n8ugg")
+offset_right = 300.0
+offset_bottom = 300.0

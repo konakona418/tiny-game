@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://cg52qvqmye8pd"]
+
+[ext_resource type="Shader" path="res://shaders/water_reflect.gdshader" id="1_bmol6"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_juc2f"]
+noise_type = 2
+frequency = 0.0118
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_la17a"]
+seamless = true
+seamless_blend_skirt = 0.312
+as_normal_map = true
+noise = SubResource("FastNoiseLite_juc2f")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qdr2b"]
+shader = ExtResource("1_bmol6")
+shader_parameter/yOffset = 1.1
+shader_parameter/amplitude = Vector2(0, 0.05)
+shader_parameter/noiseScale = 1.0
+shader_parameter/shakeSpeed = Vector2(0, 0.1)
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_la17a")
+
+[node name="Water" type="Node2D"]
+
+[node name="Rect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_qdr2b")
+offset_right = 100.0
+offset_bottom = 100.0
+metadata/_edit_use_anchors_ = true

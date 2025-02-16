@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://c51euujh2y6ud"]
+
+[ext_resource type="Shader" uid="uid://cw0xy3wqyru36" path="res://shaders/water.tres" id="1_guxuo"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_k8has"]
+size = Vector2(100, 100)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x76p3"]
+render_priority = 0
+shader = ExtResource("1_guxuo")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ege40"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Root" type="Node"]
+
+[node name="SubViewport" type="SubViewport" parent="."]
+
+[node name="Water" type="MeshInstance3D" parent="SubViewport"]
+mesh = SubResource("PlaneMesh_k8has")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_x76p3")
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 14, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("ViewportTexture_ege40")

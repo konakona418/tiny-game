@@ -1,0 +1,61 @@
+[gd_scene load_steps=10 format=3 uid="uid://b7r7owg5lncft"]
+
+[ext_resource type="Shader" path="res://shaders/slime.gdshader" id="1_3hetk"]
+[ext_resource type="Script" path="res://sprites/slime.gd" id="1_dp4qm"]
+[ext_resource type="Texture2D" uid="uid://dbor7wei426v6" path="res://art/slime.png" id="3_23h6t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vxqpi"]
+shader = ExtResource("1_3hetk")
+shader_parameter/outlineWidth = 1.0
+shader_parameter/outlineColor = Color(0, 4.734, 18.935, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5sr3q"]
+atlas = ExtResource("3_23h6t")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_evsdq"]
+atlas = ExtResource("3_23h6t")
+region = Rect2(0, 48, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_llx8e"]
+atlas = ExtResource("3_23h6t")
+region = Rect2(0, 96, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u7w0p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5sr3q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_evsdq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_llx8e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_evsdq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5sr3q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i8hu7"]
+radius = 12.0
+
+[node name="Slime" type="StaticBody2D"]
+script = ExtResource("1_dp4qm")
+
+[node name="Animation" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_vxqpi")
+sprite_frames = SubResource("SpriteFrames_u7w0p")
+autoplay = "default"
+frame_progress = 0.0233177
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_i8hu7")

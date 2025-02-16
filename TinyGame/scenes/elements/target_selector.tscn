@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://s3qpqvh50x01"]
+
+[ext_resource type="Texture2D" uid="uid://c3y1e4j7274ye" path="res://art/selector.png" id="1_fiu5a"]
+
+[node name="TargetSelector" type="Node2D"]
+
+[node name="Cursor" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_fiu5a")

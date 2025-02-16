@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0td6wek075eq"]
+
+[ext_resource type="PackedScene" uid="uid://dar44ofbg41dx" path="res://scenes/stages/stage0.tscn" id="1_xas07"]
+
+[sub_resource type="Environment" id="Environment_pq7vx"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 1.47
+glow_strength = 1.4
+
+[node name="Main" type="Node2D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_pq7vx")
+
+[node name="Stage0" parent="." instance=ExtResource("1_xas07")]

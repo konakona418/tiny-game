@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=3 uid="uid://ckyj4k7rh0htj"]
+
+[ext_resource type="Script" path="res://sprites/player_bullet.gd" id="1_dmtxd"]
+[ext_resource type="Shader" path="res://shaders/player_bullet.gdshader" id="1_y3f0i"]
+[ext_resource type="Texture2D" uid="uid://bceqay4fepxgc" path="res://art/bullet.png" id="2_qoala"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rhp0x"]
+shader = ExtResource("1_y3f0i")
+shader_parameter/outlineWidth = 1.0
+shader_parameter/outlineColor = Color(0, 5.325, 6.509, 1)
+shader_parameter/velocity = Vector2(0, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xuljp"]
+radius = 12.0
+
+[node name="Bullet" type="Area2D"]
+material = SubResource("ShaderMaterial_rhp0x")
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_dmtxd")
+metadata/velocity = Vector2(0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+use_parent_material = true
+texture = ExtResource("2_qoala")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xuljp")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Trailings" type="Node2D" parent="."]
+
+[node name="Trailing2" type="CPUParticles2D" parent="Trailings"]
+amount = 300
+speed_scale = 0.85
+lifetime_randomness = 1.0
+emission_shape = 2
+emission_sphere_radius = 7.0
+spread = 180.0
+initial_velocity_max = 46.6
+scale_amount_min = 5.0
+scale_amount_max = 8.0
+color = Color(4.734, 0, 3.55, 1)
+
+[node name="Trailing" type="CPUParticles2D" parent="Trailings"]
+amount = 1000
+speed_scale = 0.85
+lifetime_randomness = 1.0
+emission_shape = 2
+emission_sphere_radius = 7.0
+spread = 180.0
+initial_velocity_max = 20.0
+scale_amount_min = 5.0
+scale_amount_max = 8.0
+color = Color(4.734, 0.592, 1, 1)
+
+[node name="Trailing3" type="CPUParticles2D" parent="Trailings"]
+amount = 300
+speed_scale = 0.85
+lifetime_randomness = 1.0
+emission_shape = 2
+emission_sphere_radius = 7.0
+spread = 180.0
+initial_velocity_max = 46.6
+scale_amount_min = 5.0
+scale_amount_max = 8.0
+color = Color(0.17, 0.002, 1.776, 1)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
